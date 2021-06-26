@@ -3,4 +3,9 @@ class Api::BooksController < ApplicationController
     @book = Book.find(params[:id])
     render 'show', formats: 'json', handlers: 'jbuilder'
   end
+
+  def index
+    @books = Book.all
+    render 'index', formats: 'json', handlers: 'jbuilder'
+  end
 end
