@@ -60,3 +60,4 @@ gem 'foreman'
 
 gem 'materialize-sass'
 gem 'material_icons'
+gem 'faker'
