@@ -1,5 +1,5 @@
 class Api::BooksController < ApplicationController
-  protect_from_forgery :except => [:create, :update]
+  protect_from_forgery :except => [:create, :update, :destroy]
 
   def show
     @book = Book.find(params[:id])
@@ -26,6 +26,15 @@ class Api::BooksController < ApplicationController
       head :no_content
     else
       render json: @book.errors, status: :unprocessable_entry
+    end
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    if @book.destroy
+      head :no_content
+    else
+      render json: @book.errors, ststus: :unprocessable_entry
     end
   end
 

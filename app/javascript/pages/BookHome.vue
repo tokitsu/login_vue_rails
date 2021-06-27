@@ -27,6 +27,7 @@
               ・ジャンル：{{ bookInfo.genre }}
             </div>
             <router-link :to="{ path: `/update/${bookInfo.id}`}" class="btn">本の編集</router-link>
+            <button class="btn #e53935 red darken-1" v-on:click="deleteBook(bookInfo.id)">削除</button>
           </div>
         </div>
       </div>
@@ -64,6 +65,14 @@
           this.bookInfo = res.data;
           this.bookInfoBool = true;
         });
+      },
+      deleteBook(id){
+        axios.delete(`api/books/${id}.json`).then(res => {
+          this.bookInfo = '';
+          this.bookInfoBool = false;
+          this.books = [];
+          this.fetchBooks();
+        })
       }
     }
   }
