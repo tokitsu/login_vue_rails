@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import router from '../router/router.js'
 import axios from 'axios'
+import router from '../router/router.js'
 
 Vue.use(Vuex)
 
@@ -10,8 +10,12 @@ export default new Vuex.Store({
     books: [],
     bookInfo: {},
     bookInfoBool: false,
+    signedIn: '',
   },
   mutations: {
+    fetchSignedIn(state) {
+      state.signedIn = !!localStorage.signedIn
+    },
     fetchBooks(state) {
       state.books = [];
       axios.get('/api/books').then((res) => {
@@ -33,6 +37,12 @@ export default new Vuex.Store({
         state.bookInfo = '';
         state.bookInfoBool = false;
       })
+    }
+  },
+  actions: {
+    // ログイン時等において，[$store.dispatch('doFetchSignedIn')]で次のメソッドを呼び出し，[signedIn]を更新する。
+    doFetchSignedIn({ commit }) {
+      commit('fetchSignedIn')
     }
   }
 })
