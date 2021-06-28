@@ -1,7 +1,8 @@
-# README
-
 ## vue.js と rails を使用したアプリケーション
 
-### CRUD
+### 学習ポイント
 
-### 状態管理(Vuex) JWT トークン
+#### ・ログイン機能(vue.js & rails)
+
+#### ・状態管理(Vuex)
+#### ・JWTトークン認証
